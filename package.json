@@ -2,9 +2,10 @@
   "name": "sports-dashboard",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "src/index.ts",
   "scripts": {
-    "dev": "tsx watch index.ts"
+    "dev": "tsx watch src/index.ts",
+    "start": "tsx src/index.ts"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +20,8 @@
   "packageManager": "pnpm@12.9.0",
   "type": "module",
   "dependencies": {
+    "@types/express": "^5.0.6",
+    "express": "^5.2.1",
     "ws": "^8.22.0"
   },
   "devDependencies": {
