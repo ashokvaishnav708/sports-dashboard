@@ -10,7 +10,7 @@ function sendJSON(socket: WebSocket, payload: unknown) {
 
 function broadcast(wss: WebSocketServer, payload: unknown) {
   for (const client of wss.clients) {
-    if (client.readyState !== WebSocket.OPEN) return;
+    if (client.readyState !== WebSocket.OPEN) continue;
 
     client.send(JSON.stringify(payload));
   }
@@ -23,7 +23,7 @@ export function attachWebSocketServer(server: http.Server) {
     maxPayload: 1024 * 1024,
   });
 
-  wss.on("connection", (socket) => {
+  wss.on("connection", (socket: WebSocket) => {
     sendJSON(socket, { type: "welcome" });
     socket.on("error", console.error);
   });
