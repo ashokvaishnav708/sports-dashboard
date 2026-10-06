@@ -51,7 +51,7 @@ matchRouter.post("/", async (req: Request, res: Response) => {
   } = parsed;
 
   try {
-    const [event] = await db
+    const [matchEvent] = await db
       .insert(matches)
       .values({
         ...parsed.data,
@@ -63,7 +63,11 @@ matchRouter.post("/", async (req: Request, res: Response) => {
       })
       .returning();
 
-    res.status(201).json({ data: event });
+    if (res.app.locals.broadcastMatchCreated) {
+      res.app.locals.broadcastMatchCreated(matchEvent);
+    }
+
+    res.status(201).json({ data: matchEvent });
   } catch (e) {
     res
       .status(500)
