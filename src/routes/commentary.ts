@@ -25,7 +25,8 @@ commentaryRouter.get("/", async (req: Request, res: Response) => {
   const limit = Math.min(parsed.data.limit ?? 50, MAX_LIMIT);
 
   try {
-    const data = await db.select
+    const data = await db
+      .select()
       .from(commentary)
       .orderBy(desc(commentary.createdAt))
       .limit(limit);
@@ -57,7 +58,7 @@ commentaryRouter.post("/", async (req: Request, res: Response) => {
 
   try {
     const { minute, ...rest } = bodyResult.data;
-    await db
+    const [result] = await db
       .insert(commentary)
       .values({
         matchId: paramsResult.data.id,
@@ -65,6 +66,10 @@ commentaryRouter.post("/", async (req: Request, res: Response) => {
         ...rest,
       })
       .returning();
+
+    if (res.app.locals.broadcastCommentary) {
+      res.app.locals.broadcastCommentary(result.matchId, result.message);
+    }
   } catch (err) {
     console.error("Failed to create commentary", err);
     return res.status(500).json({ error: "Failed to create commentary" });
