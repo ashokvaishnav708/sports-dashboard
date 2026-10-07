@@ -14,7 +14,7 @@ services:
     # networks:
     #   - sports_dashboard
     healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -U oldstore']
+      test: ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USER}']
       interval: 5s
       timeout: 5s
       retries: 10
