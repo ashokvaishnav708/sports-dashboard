@@ -4,7 +4,10 @@
   "description": "",
   "main": "src/index.ts",
   "imports": {
-    "#config/*": "./src/config/*"
+    "#config/*": "./src/config/*",
+    "#routes/*": "./src/routes/*",
+    "#utils/*": "./src/utils/*",
+    "#validation/*": "./src/validation/*"
   },
   "scripts": {
     "dev": "tsx watch src/index.ts",
