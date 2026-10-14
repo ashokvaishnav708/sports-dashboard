@@ -8,7 +8,8 @@
     "#routes/*": "./src/routes/*",
     "#utils/*": "./src/utils/*",
     "#validation/*": "./src/validation/*",
-    "#controller/*": "./src/controller/*"
+    "#controller/*": "./src/controller/*",
+    "#services/*": "./src/services/*"
   },
   "scripts": {
     "dev": "tsx watch src/index.ts",
@@ -30,9 +31,11 @@
   "packageManager": "pnpm@12.9.0",
   "type": "module",
   "dependencies": {
+    "@types/bcrypt": "^6.0.0",
     "@types/cookie-parser": "^1.4.10",
     "@types/express": "^5.0.6",
     "@types/jsonwebtoken": "^9.0.10",
+    "bcrypt": "^6.0.0",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",
     "dotenv": "^18.0.5",
