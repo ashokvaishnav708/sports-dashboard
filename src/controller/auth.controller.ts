@@ -40,3 +40,17 @@ export const signup = async (
     logger.error("Signup error", err);
   }
 };
+
+export const signout = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    cookies.set(res, "token", undefined);
+    res.status(200).send({ message: "Successfully signed out." });
+    next();
+  } catch (err) {
+    logger.error(`Error signing out user: ${req.body.email}`, err);
+  }
+};

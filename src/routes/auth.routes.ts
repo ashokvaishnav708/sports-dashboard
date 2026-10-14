@@ -1,6 +1,6 @@
 import logger from "#config/logger.ts";
 import { Router, Request, Response } from "express";
-import { signup } from "#controller/auth.controller.ts";
+import { signout, signup } from "#controller/auth.controller.ts";
 
 const authRouter = Router();
 
@@ -13,11 +13,6 @@ authRouter.get("/sign-in", (req: Request, res: Response) => {
   res.send(msg);
 });
 
-authRouter.get("/sing-out", (req: Request, res: Response) => {
-  const msg: string = "Received GET/ sign-out request";
-
-  logger.info(msg);
-  res.send(msg);
-});
+authRouter.get("/sing-out", signout);
 
 export default authRouter;
