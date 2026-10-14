@@ -54,6 +54,7 @@ export const users = pgTable("users", {
   email: text("email").unique().notNull(),
   password: text("password").notNull(),
   role: userRoleEnum("role").notNull().default("user"),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
 });
 
-export type User = typeof users.$inferSelect;
+export type CreateUser = typeof users.$inferInsert;
