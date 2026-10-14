@@ -14,6 +14,8 @@ export const matchStatusEnum = pgEnum("match_status", [
   "finished",
 ]);
 
+export const userRoleEnum = pgEnum("user_role", ["user", "admin"]);
+
 export const matches = pgTable("matches", {
   id: serial("id").primaryKey(),
   sport: text("sport").notNull(),
@@ -45,3 +47,13 @@ export const commentary = pgTable("commentary", {
   tags: text("tags").array(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });
+
+export const users = pgTable("users", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  email: text("email").unique().notNull(),
+  password: text("password").notNull(),
+  role: userRoleEnum("role").notNull().default("user"),
+});
+
+export type User = typeof users.$inferSelect;
