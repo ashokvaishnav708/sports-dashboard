@@ -6,10 +6,10 @@ const JWT_SECRET =
 const JWT_EXPIRES_IN = "1d";
 
 export const jwttoken: {
-  sign: (payloda: string) => string;
+  sign: (payloda: string | object) => string;
   verify: (token: string) => string | jwt.JwtPayload;
 } = {
-  sign: (payload: string) => {
+  sign: (payload: string | object) => {
     try {
       return jwt.sign(payload, JWT_SECRET, {
         expiresIn: JWT_EXPIRES_IN,
