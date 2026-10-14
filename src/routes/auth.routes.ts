@@ -1,14 +1,10 @@
 import logger from "#config/logger.ts";
 import { Router, Request, Response } from "express";
+import { signup } from "#controller/auth.controller.ts";
 
 const authRouter = Router();
 
-authRouter.post("/sign-up", (req: Request, res: Response) => {
-  const msg: string = "Received POST/ sign-up request.";
-
-  logger.info(msg);
-  res.send(msg);
-});
+authRouter.post("/sign-up", signup);
 
 authRouter.get("/sign-in", (req: Request, res: Response) => {
   const msg: string = "Received GET/ sing-in request";
