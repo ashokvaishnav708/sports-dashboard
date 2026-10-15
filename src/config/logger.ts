@@ -5,7 +5,7 @@ const logger = createLogger({
   format: format.combine(
     (format.timestamp(), format.errors({ stack: true }), format.json()),
   ),
-  defaultMeta: { service: "acquisitions-api" },
+  defaultMeta: { service: "sports-dashboard-api" },
   transports: [
     new transports.File({ filename: "logs/error.log", level: "error" }),
     new transports.File({ filename: "logs/combined.log" }),
